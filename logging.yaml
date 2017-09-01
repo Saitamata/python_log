@@ -18,7 +18,7 @@ handlers:
   class: cloghandler.ConcurrentRotatingFileHandler
   level: DEBUG
   formatter: simple
-  filename: algopox.log
+  filename: ./log/algopox.log
   maxBytes: 1048576
   backupCount: 10
   encoding: utf8
