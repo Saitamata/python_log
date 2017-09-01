@@ -12,7 +12,9 @@ def setup_logging(
 	env_key = 'LOG_CFG'
 ):
 	'''Setup logging config from file: logging.yaml
-
+	 
+	You can set the config file(logging.yaml)'s path to the env:LOG_CFG
+	by export LOG_CG=/xx/xx/xx/xx/logging.yaml in /etc/profile
 	'''
 	path = default_path
 	value = os.getenv(env_key, None)
@@ -22,7 +24,6 @@ def setup_logging(
 		with open(path, 'rt') as f:
 			config = yaml.load(f.read())
 		logging.config.dictConfig(config)
-		print "I am doing configing"
 	else:
 		purepath = os.getcwd()
 		purename = "default_algopox.log"
@@ -35,7 +36,7 @@ def test():
 	setup_logging()
 	logger = logging.getLogger(__name__)
 	import time
-	for i in range(0,100):
+	for i in range(0,10):
 		time.sleep(1)
 		logger.warning("This is a warring message for using config file %d",i)
 
