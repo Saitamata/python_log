@@ -23,7 +23,16 @@ def setup_logging(
 	if os.path.exists(path):
 		with open(path, 'rt') as f:
 			config = yaml.load(f.read())
-		logging.config.dictConfig(config)
+		try:
+			logging.config.dictConfig(config)
+		except ValueError:
+			print '''
+			Error occurred when config logger from file logging.yaml.
+			Please check the filename's existence or other attributes'
+			Exiting...
+			'''
+			exit(1)
+			
 	else:
 		purepath = os.getcwd()
 		purename = "default_algopox.log"
